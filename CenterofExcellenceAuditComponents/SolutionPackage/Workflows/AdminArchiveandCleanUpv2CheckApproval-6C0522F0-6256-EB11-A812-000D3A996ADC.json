@@ -110,7 +110,7 @@
                   },
                   "expression": {
                     "equals": [
-                      "@items('Apply_to_each')?['msdyn_flow_approvalresponse_response']",
+                      "",
                       "Approve"
                     ]
                   },
@@ -315,6 +315,23 @@
           },
           "type": "OpenApiConnection"
         },
+        "Init_logoUrl": {
+          "inputs": {
+            "variables": [
+              {
+                "name": "logoUrl",
+                "type": "string",
+                "value": "@{first(body('Get_Settings')?['value'])?['admin_logo']}"
+              }
+            ]
+          },
+          "runAfter": {
+            "Get_Settings": [
+              "Succeeded"
+            ]
+          },
+          "type": "InitializeVariable"
+        },
         "Initialize_adminMail": {
           "inputs": {
             "variables": [
@@ -344,23 +361,6 @@
           },
           "runAfter": {
             "Initialize_adminMail": [
-              "Succeeded"
-            ]
-          },
-          "type": "InitializeVariable"
-        },
-        "Initialize_logoUrl": {
-          "inputs": {
-            "variables": [
-              {
-                "name": "logoUrl",
-                "type": "string",
-                "value": "@{first(body('Get_Settings')?['value'])?['admin_logo']}"
-              }
-            ]
-          },
-          "runAfter": {
-            "Get_Settings": [
               "Succeeded"
             ]
           },
@@ -413,7 +413,7 @@
             }
           },
           "runAfter": {
-            "Initialize_logoUrl": [
+            "Init_logoUrl": [
               "Succeeded"
             ]
           },
